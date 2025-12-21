@@ -1,0 +1,89 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.db
+*.sqlite3
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Byte-compiled / optimized files
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+
+# -----------------------------
+# IDE / Editor
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -----------------------------
+# OS files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+logs/
+*/logs/
+
+# -----------------------------
+# Environment Variables
+# -----------------------------
+.env
+.env.local
+.env.*.local
+
+# -----------------------------
+# Docker
+# -----------------------------
+# Avoid committing large Docker build caches
+docker-data/
+*/docker-data/
+
+# -----------------------------
+# pytest cache
+# -----------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# -----------------------------
+# Jupyter / Temp files
+# -----------------------------
+.ipynb_checkpoints/
+*.ipynb
+*.tmp
+*.bak
+
+# -----------------------------
+# CSV / Excel uploads (your app handles files)
+# -----------------------------
+uploads/
+*.csv
+*.xlsx
+
+# -----------------------------
+# FastAPI specific
+# -----------------------------
+*.db-journal
