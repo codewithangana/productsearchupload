@@ -7,6 +7,9 @@ from sqlalchemy.orm import Session
 from app.models.product import Product
 from app.repositories.product_repo import bulk_create
 from app.services.validator import validate_row
+import csv
+from io import StringIO
+from app.repositories.product_repo import get_all_products
 
 
 def upload_products(
@@ -47,3 +50,26 @@ def upload_products(
     bulk_create(db, valid_products)
 
     return valid_products, failed_rows
+
+
+def export_products_to_csv(db):
+    products = get_all_products(db)
+
+    output = StringIO()
+    writer = csv.writer(output)
+
+    # CSV header
+    writer.writerow([
+        "sku", "name", "brand", "color",
+        "size", "mrp", "price", "quantity"
+    ])
+
+    # CSV rows
+    for p in products:
+        writer.writerow([
+            p.sku, p.name, p.brand, p.color,
+            p.size, p.mrp, p.price, p.quantity
+        ])
+
+    output.seek(0)
+    return output.getvalue()

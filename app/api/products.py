@@ -1,14 +1,20 @@
 # app/api/products.py
 
+import csv
+import io
 from typing import List, Optional
+from wsgiref import headers
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Response
 from fastapi.responses import JSONResponse
 
 from app.db.session import SessionLocal
 from app.repositories.product_repo import list_products, search_products
 from app.schemas.product import ProductResponse
-
+from app.models.product import Product
+from fastapi.responses import StreamingResponse
+from app.services.product_service import export_products_to_csv
+from io import BytesIO
 router = APIRouter()
 
 
@@ -52,4 +58,20 @@ def search(
             )
         return results
     finally:
-        db.close()        
+        db.close()  
+
+
+@router.get("/products/export")
+def export_products():
+    db = SessionLocal()
+    try:
+        csv_data = export_products_to_csv(db)
+        return StreamingResponse(
+            BytesIO(csv_data.encode("utf-8")),
+            media_type="text/csv",
+            headers={
+                "Content-Disposition": "attachment; filename=products.csv"
+            }
+        )
+    finally:
+        db.close()

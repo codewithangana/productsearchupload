@@ -4,3 +4,17 @@ pydantic
 python-multipart
 openpyxl
 SQLAlchemy
+fastapi
+uvicorn
+pydantic
+python-multipart
+openpyxl
+SQLAlchemy
+
+# Database
+psycopg2-binary
+
+# Testing
+pytest
+pytest-mock
+pytest-cov

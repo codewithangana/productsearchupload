@@ -46,3 +46,6 @@ def search_products(
         query = query.filter(Product.price <= max_price)
 
     return query.all()
+
+def get_all_products(db: Session):
+    return db.query(Product).all()
